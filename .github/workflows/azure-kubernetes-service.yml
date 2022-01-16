@@ -37,10 +37,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node_version: [8.x, 10.x]
+       include:
+        - node_version: 10.x
+          npm: "15"
+        - node_version: 8.x
+          npm: "4"
     steps:
     - uses: actions/checkout@master
     
     - name: Moving build to artifacts directory
       run: |
         echo "node version ${{ matrix.node_version }}"
+        echo "npm version ${{ matrix.npm }}"
